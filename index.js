@@ -50,16 +50,19 @@ for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", function() {
         const buttonPressed = buttons[i].innerHTML;
         playDrumSound(buttonPressed);
+        playButtonAnimation(buttonPressed);
     })
 }
 
 document.addEventListener("keydown", function(e) {
     playDrumSound(e.key);
+    playButtonAnimation(e.key);
 })
 
-// var buttonMatches = document.querySelectorAll(".drum")
-
-// buttonMatches.forEach(button => {
-//     button.addEventListener("click", playDrumSound(button.innerHTML));
-// });
-
+function playButtonAnimation (key) {
+    var activeButton = document.querySelector("." + key);
+    activeButton.classList.add('pressed');
+    setTimeout(function() {
+        activeButton.classList.remove('pressed');
+    }, 100)
+}
